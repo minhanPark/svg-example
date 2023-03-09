@@ -274,3 +274,29 @@ pattern의 width와 height는 비율을 나타낸다. 즉 0.1이기 때문에 1/
 
 defs 안에 mask태그를 쓰고, mask 태그안에 형태(사각형이든 원이든)를 잡아준다. 이때 **반드시 fill을 하얀계열**로 채운다.  
 밑에 작성한 텍스트 부분을 그룹(g)로 감싸고 mask를 연결해주면 마스크에 설정된 부분만 텍스트가 보이게 된다.
+
+## stroke 애니메이션 주기
+
+stroke-dasharray와 stroke-dashoffset을 통해서 stroke 애니메이션을 줄 수 있다.
+
+stroke-dasharray는 svg에서 선들을 그릴 때 선들을 특정 길이만큼 띄어준다. 전체를 띄우려면 **temp1.getTotalLength()**처럼 전체 길이를 갖고오면 된다.  
+stroke-dashoffset은 띄우는 공간을 밀어준다. 전체를 밀어 버리면 다 사라진것을 확인할 수 있다.
+
+```css
+@keyframes path-ani {
+  from {
+    stroke-dashoffset: 727;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+path {
+  fill: transparent;
+  stroke: black;
+  stroke-width: 5;
+  stroke-dasharray: 727;
+  /* stroke-dashoffset: 0; */
+  animation: path-ani 1.5s infinite alternate;
+}
+```
